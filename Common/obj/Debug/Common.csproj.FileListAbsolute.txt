@@ -1,0 +1,9 @@
+D:\Code\BlogMaGiam\Common\bin\Debug\Common.dll.config
+D:\Code\BlogMaGiam\Common\bin\Debug\Common.dll
+D:\Code\BlogMaGiam\Common\bin\Debug\Common.pdb
+D:\Code\BlogMaGiam\Common\bin\Debug\Newtonsoft.Json.dll
+D:\Code\BlogMaGiam\Common\bin\Debug\Newtonsoft.Json.xml
+D:\Code\BlogMaGiam\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\Code\BlogMaGiam\Common\obj\Debug\Common.csproj.CopyComplete
+D:\Code\BlogMaGiam\Common\obj\Debug\Common.dll
+D:\Code\BlogMaGiam\Common\obj\Debug\Common.pdb

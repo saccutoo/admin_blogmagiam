@@ -1,0 +1,74 @@
+﻿@model BlogMaGiam.ViewModel.TableViewModel
+@{
+    Layout = null;
+    int totalPage = 0;
+    int minPage = 1;
+    List<int> arrayNew = new List<int>();
+    if (Model.Total>0)
+    {
+        double totalPageNew = Convert.ToDouble(Model.Total) /Convert.ToDouble(Model.PageSize);
+        double totalPageNewToFixed = Math.Ceiling(totalPageNew);
+        totalPageNew = totalPageNewToFixed;
+        totalPage = Convert.ToInt32(totalPageNew);
+
+        if (totalPageNew <= 5)
+        {
+            for (int index = 1; index <= totalPageNew; index++)
+            {
+                arrayNew.Add(index);
+            }
+        }
+        else if (Model.PageIndex < 4 && totalPageNew >= 5)
+        {
+            for (int index = 1; index <= 5; index++)
+            {
+                arrayNew.Add(index);
+            }
+        }
+        else if (totalPageNew > 5 && Model.PageIndex > 3)
+        {
+
+            int maxPage = Model.PageIndex + 2;
+            minPage = Model.PageIndex - 2;
+            if (Model.PageIndex + 2 >= totalPageNew)
+            {
+                maxPage = Convert.ToInt32(totalPageNew);
+                minPage = Convert.ToInt32(totalPageNew - 4);
+            }
+            else if (maxPage == totalPageNew)
+            {
+                minPage = Convert.ToInt32(Model.PageIndex - 4);
+            }
+
+
+            for (int index = minPage; index <= maxPage; index++)
+            {
+                arrayNew.Add(index);
+            }
+        }
+    }
+}
+<div class="col-md-12 pagination-view">
+    <div class="col-md-6 pagination-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item pageClick @(Model.PageIndex==1 ? "no-event" : "")" value="1"><a class="page-link">First</a></li>
+                <li class="page-item pageClick" @(Model.PageIndex == 1 ? "hidden" : "") value="@(Model.PageIndex-1)"><a class="page-link ">Previous</a></li>
+                @{
+                    for (int i = 0; i < arrayNew.Count; i++)
+                    {
+                        <li class="page-item pageClick @(Model.PageIndex==arrayNew[i] ? "active" : "") " value="@arrayNew[i].ToString()"><a class="page-link" href="#">@arrayNew[i].ToString()</a></li>
+                    }
+                }
+                <li class="page-item pageClick" @(Model.PageIndex == totalPage ? "hidden" : "") value="@(Model.PageIndex+1)"><a class="page-link ">Next</a></li>
+                <li class="page-item pageClick @(Model.PageIndex==totalPage ? "no-event" : "")" value="@totalPage"><a class="page-link ">Last</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-6">
+        <span>Total page : <span class="font-bold"> @totalPage</span></span> -
+        <span>Total row : <span class="font-bold"> @Model.Total</span></span>
+    </div>
+</div>
+
+

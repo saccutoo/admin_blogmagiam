@@ -1,0 +1,49 @@
+﻿@model BlogMaGiam.ViewModel.DashboardViewModel
+@using Common;
+@{
+    Layout = null;
+}
+
+<div class="card-header">
+    <span>Total click merchant in <span class="font-bold">@Model.Type</span></span>
+</div>
+<div class="card-body">
+    <div class="table table-responsive table-common">
+        @if (Model != null && Model.Datas != null && Model.Datas.Count > 0)
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Merchant name</th>
+                        <th>Total click</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        int index = 1;
+                        foreach (var item in Model.Datas)
+                        {
+                            <tr>
+                                <td>
+                                    <span>@index</span>
+                                </td>
+                                <td>
+                                    <span>@item.merchant_name</span>
+                                </td>
+                                <td>
+                                    <span>@item.count_click</span>
+                                </td>
+                            </tr>
+                            index++;
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+
+

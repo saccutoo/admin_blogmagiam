@@ -1,0 +1,53 @@
+﻿@model BlogMaGiam.ViewModel.ClickMerchantViewModel
+@using Common;
+@{
+    Layout = null;
+}
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ip</th>
+            <th>Merchant name</th>
+            <th>Aff link</th>
+            <th>Create date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Datas != null && Model.Datas.Count > 0)
+        {
+            foreach (var item in Model.Datas)
+            {
+                <tr>
+                    <td>
+                        <span >@item.ip</span>
+                    </td>                  
+                    <td>
+                        <span>@item.merchant_name</span>
+                    </td>
+                    <td >
+                        <a href="@item.aff_link" title="@item.aff_link" data-bs-toggle="tooltip" data-bs-placement="top">
+
+                            @if (!string.IsNullOrEmpty(item.aff_link) && item.aff_link.Length > 100)
+                            {
+                                <span>@item.aff_link.Substring(0, 100) ...</span>
+                            }
+                            else
+                            {
+                                <span>@item.aff_link ...</span>
+                            }
+
+                        </a>
+                    </td>
+                    <td >
+                        <span>@item.create_date.Value.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                    </td>
+                 </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@Html.Partial("~/Views/Table/_Pagination.cshtml", Model.Table)
+

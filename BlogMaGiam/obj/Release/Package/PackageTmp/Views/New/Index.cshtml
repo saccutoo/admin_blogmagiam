@@ -1,0 +1,78 @@
+﻿@model BlogMaGiam.ViewModel.NewViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">New</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @*<li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard v1</li>*@
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-header ">
+            <div class="div-filter col-md-2">
+                <input type="text" id="value" class="form-control" />
+            </div>
+            <div class="div-filter col-md-2">
+                <select class="form-control" id="status" name="status">
+                    <option value="" selected>
+                        ---Selected status
+                    </option>
+                    @if (Model.Status != null && Model.Status.Count > 0)
+                    {
+                        foreach (var item in Model.Status)
+                        {
+                            <option value="@item.id">
+                                @item.name
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="div-filter">
+                <button class="btn btn-primary" onclick="_newJs.viewList(1)"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="div-button ">
+                <button class="btn btn-primary" onclick="_newJs.add()">Add new</button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table table-responsive table-common" id="table-common">
+                @Html.Partial("~/Views/New/_ListView.cshtml", Model)
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+
+@section scripts
+{
+    <script src="~/Scripts/New/New.js"></script>
+    <script>
+        var params = {
+            urlViewList: '@Url.Action("ViewList","New")',
+            urlAdd: '@Url.Action("Add","New")',
+            urlChange: '@Url.Action("Change", "New")',
+            urlEdit: '@Url.Action("Edit", "New")',
+            urlUpdateStatus: '@Url.Action("UpdateStatus", "New")',
+        }
+        var _newJs = new newJS.NewJs();
+        _newJs.initialize();
+    </script>
+}

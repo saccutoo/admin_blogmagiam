@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/Images/logo/274329745_933738823828381_8234443552870189543_n.png" />
+    <title>Admin blog mã giảm giá</title>
+    @Html.Partial("~/Views/Shared/_Css.cshtml")
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        @*<div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        </div>*@
+
+        <!-- Navbar -->
+        @*@Html.Partial("~/Views/Shared/_Navbar.cshtml")*@
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        @*@Html.Partial("~/Views/Shared/_Sidebar.cshtml")*@
+
+        @Html.Action("Menu", "Menu")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Blog mã giảm</strong>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+    <!-- ./wrapper -->
+    <!-- Large modal -->
+
+    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="myModal-content">
+                ...
+            </div>
+        </div>
+    </div>
+
+    <!-- Small modal -->
+
+    <div id="myModalSmall" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" id="myModalSmall">
+                ...
+            </div>
+        </div>
+    </div>
+ 
+</body>
+
+@Html.Partial("~/Views/Shared/_Script.cshtml")
+
+<script>
+    $('body').loadingModal({
+        position: 'auto',
+        text: '',
+        color: '#fff',
+        opacity: '0.3',
+        backgroundColor: 'red',
+        animation: 'foldingCube'
+    });
+</script>
+
+@RenderSection("scripts", required: false)
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+
+</html>

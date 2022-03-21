@@ -1,0 +1,116 @@
+﻿@model BlogMaGiam.ViewModel.MenuViewModel
+@using Common;
+@using System.Configuration;
+@using System.Web;
+@{
+    Layout = null;
+    
+
+}
+
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+    <div class="sidebar">
+
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+
+                @{
+
+                    if (Model != null && Model.Datas != null && Model.Datas.Count > 0)
+                    {
+                        foreach (var item in Model.Datas.Where(s => s.parent_id == 0))
+                        {
+                            string url = item.url ==null ? "" : item.url;
+                            string controller = item.controller == null ? "" : item.controller;
+                            var data = Model.Datas.Where(s => s.parent_id == item.id);
+                            if (item.parent_id != 0)
+                            {
+                                url = "#";
+                            }
+                            bool checkOpen = false;
+                            if (data!=null && data.Count()>0)
+                            {
+                                foreach (var checkItem in data)
+                                {
+                                    string controller1 = checkItem.controller == null ? "" : checkItem.controller;
+                                    if (Model.Path.ToUpper().Contains(controller1.ToUpper()))
+                                    {
+                                        checkOpen = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (!string.IsNullOrEmpty(item.controller) && item.controller.ToUpper().Contains("HOME"))
+                            {
+                                if (Model.Path.ToUpper().Contains(controller.ToUpper()))
+                                {
+                                    checkOpen = true;
+                                }
+                                else if (string.IsNullOrEmpty(Model.ApplicationPath) || Model.ApplicationPath==ConfigurationManager.AppSettings["APPLICATION_PATH"].ToString())
+                                {
+                                    checkOpen = true;
+                                }
+                            }
+                            <li class="nav-item @(checkOpen ? "menu-open" : "")">
+                                <a href="@url" class="nav-link @(checkOpen ? "active" : "")">
+                                    <i class="nav-icon @item.Class"></i>
+                                    <p>
+                                        @item.name
+                                        @if (data != null && data.Count() > 0)
+                                        {
+                                            <i class="fas fa-angle-left right"></i>
+                                        }
+                                    </p>
+                                </a>
+                                @if (data!=null && data.Count()>0)
+                                {
+                                    <ul class="nav nav-treeview">
+                                        @foreach (var item1 in data)
+                                        {
+                                            controller = item1.controller == null ? "" : item1.controller;
+                                            <li class="nav-item">
+                                                <a href="@item1.url" class="nav-link @(Model.Path.ToUpper().Contains(controller.ToUpper()) ? "active" : "")">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>@item1.name</p>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    }
+                }
+               
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+
+
+

@@ -1,0 +1,89 @@
+﻿@model BlogMaGiam.ViewModel.NewViewModel
+@using Common;
+@{
+    Layout = null;
+}
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Image</th>
+            <th>Link</th>
+            <th>Type new</th>
+            <th>Type promotion</th>
+            <th>Status</th>
+            <th>Created date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Datas != null && Model.Datas.Count > 0)
+        {
+            foreach (var item in Model.Datas)
+            {
+                <tr>
+                    <td>
+                        <span class="function">@item.code</span>
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.title) && item.title.Length > 100)
+                        {
+                            <span title="@item.title" data-bs-toggle="tooltip" data-bs-placement="top">@item.title.Substring(0, 100) ...</span>
+                        }
+                        else
+                        {
+                            <span>@item.title</span>
+                        }
+                    </td>
+                    <td>
+                        <img src="@item.image" width="50" height="50" />
+                    </td>
+                    <td>
+                        <a href="@item.link">@item.link</a>
+                    </td>
+                    <td>
+                        <span>@item.type_name</span>
+                    </td>
+                    <td>
+                        <span>@item.type_merchant_name</span>
+                    </td>
+                    <td>
+                        @if (item.status == Constant.Success)
+                        {
+                            <span class="badge bg-success">@item.status_name</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">@item.status_name</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.create_date != null)
+                        {
+                            <span>@item.create_date.Value.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                        }
+                    </td>
+                    <td style="width:130px">
+                        <button class="btn btn-primary" onclick="_newJs.edit('@item.id')" title="edit" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fas fa-edit"></i></button>
+                        @if (item.status == 1)
+                        {
+                            <button class="btn btn-danger" onclick="_newJs.updateStatus('@item.id',2)" title="delete" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fas fa-trash"></i></button>
+                        }
+                        else
+                        {
+
+                            <button class="btn btn-info" onclick="_newJs.updateStatus('@item.id',1)" title="undo status" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fas fa-undo"></i></button>
+                        }
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@Html.Partial("~/Views/Table/_Pagination.cshtml", Model.Table)
+

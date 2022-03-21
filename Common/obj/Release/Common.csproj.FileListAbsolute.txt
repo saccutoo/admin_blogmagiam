@@ -1,0 +1,10 @@
+D:\Code\BlogMaGiam\Common\bin\Release\Common.dll.config
+D:\Code\BlogMaGiam\Common\bin\Release\Common.dll
+D:\Code\BlogMaGiam\Common\bin\Release\Common.pdb
+D:\Code\BlogMaGiam\Common\obj\Release\Common.csproj.AssemblyReference.cache
+D:\Code\BlogMaGiam\Common\obj\Release\Common.csproj.CoreCompileInputs.cache
+D:\Code\BlogMaGiam\Common\obj\Release\Common.dll
+D:\Code\BlogMaGiam\Common\obj\Release\Common.pdb
+D:\Code\BlogMaGiam\Common\bin\Release\Newtonsoft.Json.dll
+D:\Code\BlogMaGiam\Common\bin\Release\Newtonsoft.Json.xml
+D:\Code\BlogMaGiam\Common\obj\Release\Common.csproj.CopyComplete

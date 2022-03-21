@@ -1,0 +1,44 @@
+﻿body {
+}
+
+.table-common {
+
+}
+
+.table-common .function{
+    color:blue;
+    cursor:pointer !important;
+}
+
+.table-common .page-item.active {
+     background-color: #007bff
+}
+
+.table-common .page-item {
+    cursor: pointer !important;
+}
+
+    .table-common .page-item.no-event {
+        pointer-events:none;
+        opacity:0.5;
+    }
+
+
+.div-button button {
+    float: right;
+}
+
+.message-danger {
+    color:red;
+}
+
+.note-editable {
+    height: 100px;
+}
+.div-filter {
+    float:left
+}
+
+.font-bold {
+    font-weight: bold
+}
