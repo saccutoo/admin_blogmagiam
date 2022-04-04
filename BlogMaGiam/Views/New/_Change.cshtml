@@ -30,9 +30,9 @@
                 <form id="form-change">
                     <input class="form-control" placeholder="id" id="id" name="model.id" value="@Model.Data.id" hidden>
                     <div class="form-group">
-                        <label>Code <span class="message-danger">(*)</span></label>
+                        <label>Link <span class="message-danger">(*)</span></label>
                         <input class="form-control" placeholder="Code" id="code" name="model.code" value="@Model.Data.code">
-                        <span class="message-danger" id="code-message-danger"></span>
+                        <span class="message-danger-error" id="code-message-danger"></span>
                     </div>
                     <div class="form-group">
                         <label>Title </label>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <label>Type new<span class="message-danger">(*)</span></label>
-                        <select class="form-control" id="type" name="model.type" @(Model.Data.type_merchant==0 ?"selected" : "")>
+                        <select class="form-control select2" id="type" name="model.type" @(Model.Data.type_merchant==0 ?"selected" : "")>
                             <option value="">
                                 ---Selected type new
                             </option>
@@ -67,11 +67,11 @@
                                 }
                             }
                         </select>
-                        <span class="message-danger" id="type-message-danger"></span>
+                        <span class="message-danger-error" id="type-message-danger"></span>
                     </div>
                     <div class="form-group">
                         <label>Type merchant<span class="message-danger">(*)</span></label>
-                        <select class="form-control" id="type_merchant" name="model.type_merchant">
+                        <select class="form-control select2" id="type_merchant" name="model.type_merchant">
                             <option value="" @(Model.Data.type_merchant==0 ?"selected" : "")>
                                 ---Selected type merchant
                             </option>
@@ -91,7 +91,7 @@
                                 }
                             }
                         </select>
-                        <span class="message-danger" id="type_merchant-message-danger"></span>
+                        <span class="message-danger-error" id="type_merchant-message-danger"></span>
                     </div>
                     <div class="form-group">
                         <label>Content </label>
@@ -110,7 +110,10 @@
     <button type="button" class="btn btn-primary" onclick="_newJs.change()">Save changes</button>
 </div>
 
-<script>$(function () {
-    //Add text editor
-    $('#content').summernote()
-})</script>
+<script>
+    $(function () {
+        //Add text editor
+        $('#content').summernote()
+        $('.select2').select2()
+    })
+</script>

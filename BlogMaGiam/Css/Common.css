@@ -26,10 +26,14 @@
 
 .div-button button {
     float: right;
+    margin-right:5px;
 }
 
 .message-danger {
     color:red;
+}
+.message-danger-error {
+    color: red;
 }
 
 .note-editable {
@@ -41,4 +45,8 @@
 
 .font-bold {
     font-weight: bold
+}
+
+.select2-selection--single{
+    height:38px !important;
 }

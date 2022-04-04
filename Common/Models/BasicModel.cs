@@ -8,6 +8,10 @@ namespace Common.Models
 {
     public class BasicModel
     {
+        public int status
+        {
+            get; set;
+        }
         public DateTime? create_date
         {
             get; set;
@@ -21,10 +25,6 @@ namespace Common.Models
             get; set;
         }
         public string update_by
-        {
-            get; set;
-        }
-        public int status
         {
             get; set;
         }

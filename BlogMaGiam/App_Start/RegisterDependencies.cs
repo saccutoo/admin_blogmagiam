@@ -23,6 +23,8 @@ namespace BlogMaGiam
             builder.RegisterType<DashboardService>().As<IDashboardService>().InstancePerLifetimeScope();
             builder.RegisterType<MenuService>().As<IMenuService>().InstancePerLifetimeScope();
             builder.RegisterType<AuthenService>().As<IAuthenService>().InstancePerLifetimeScope();
+            builder.RegisterType<CouponService>().As<ICouponService>().InstancePerLifetimeScope();
+            builder.RegisterType<MerchantService>().As<IMerchantService>().InstancePerLifetimeScope();
             //controller base
             builder.RegisterType<BaseController>();
 
@@ -32,7 +34,7 @@ namespace BlogMaGiam
             builder.RegisterType<ClickMerchantController>();
             builder.RegisterType<MenuController>();
             builder.RegisterType<AuthenController>();
-
+            builder.RegisterType<CouponController>();
             //build all
             Container = builder.Build();
 

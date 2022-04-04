@@ -8,3 +8,13 @@ D:\Code\BlogMaGiam\Common\obj\Release\Common.pdb
 D:\Code\BlogMaGiam\Common\bin\Release\Newtonsoft.Json.dll
 D:\Code\BlogMaGiam\Common\bin\Release\Newtonsoft.Json.xml
 D:\Code\BlogMaGiam\Common\obj\Release\Common.csproj.CopyComplete
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\bin\Release\Common.dll.config
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\bin\Release\Common.dll
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\bin\Release\Common.pdb
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\bin\Release\Newtonsoft.Json.dll
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\bin\Release\Newtonsoft.Json.xml
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\obj\Release\Common.csproj.AssemblyReference.cache
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\obj\Release\Common.csproj.CoreCompileInputs.cache
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\obj\Release\Common.csproj.CopyComplete
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\obj\Release\Common.dll
+D:\Code\GIT_BLOG_MA_GIAM\admin_blogmagiam\Common\obj\Release\Common.pdb

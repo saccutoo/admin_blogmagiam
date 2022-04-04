@@ -172,6 +172,7 @@
     <Compile Include="Controllers\ClickMerchantController.cs" />
     <Compile Include="Controllers\AuthenController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\NewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,10 +185,14 @@
     <Compile Include="Services\ClickMerchant\IClickMerchantService.cs" />
     <Compile Include="Services\ClickMerchant\ClickMerchantService.cs" />
     <Compile Include="Services\CommonService.cs" />
+    <Compile Include="Services\Coupon\ICouponService.cs" />
+    <Compile Include="Services\Coupon\CouponService.cs" />
     <Compile Include="Services\Dashboard\DashboardService.cs" />
     <Compile Include="Services\Dashboard\IDashboardService.cs" />
     <Compile Include="Services\Menu\IMenuService.cs" />
     <Compile Include="Services\Menu\MenuService.cs" />
+    <Compile Include="Services\Merchant\IMerchantService.cs" />
+    <Compile Include="Services\Merchant\MerchantService.cs" />
     <Compile Include="Services\New\INewService.cs" />
     <Compile Include="Services\New\NewService.cs" />
     <Compile Include="Services\Status\IStatusService.cs" />
@@ -202,6 +207,7 @@
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AuthenController.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="ViewModel\CouponViewModel.cs" />
     <Compile Include="ViewModel\TableViewModel.cs" />
     <Compile Include="ViewModel\NewViewModel.cs" />
   </ItemGroup>
@@ -247,6 +253,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ClickMerchant\ClickMerchant.js" />
     <Content Include="Scripts\Common\Common.js" />
+    <Content Include="Scripts\Coupon\Coupon.js" />
     <Content Include="Scripts\Dashboard\Dashboard.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2729,6 +2736,10 @@
       <DependentUpon>NLog.config</DependentUpon>
     </Content>
     <Content Include="Views\Authen\Login.cshtml" />
+    <Content Include="Views\Coupon\Index.cshtml" />
+    <Content Include="Views\Coupon\_ListView.cshtml" />
+    <Content Include="Views\Coupon\_Change.cshtml" />
+    <Content Include="Views\Coupon\_Sort.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

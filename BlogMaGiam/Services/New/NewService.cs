@@ -19,7 +19,7 @@ namespace BlogMaGiam.Services
             _commonService = new CommonService<NewModel>();
         }
 
-        public ResponseObject<List<NewModel>> GetTopNewByFilter (string model)
+        public ResponseObject<List<NewModel>> GetTopNewByFilter(string model)
         {
             return _commonService.GetListApi(urlGetTopNewByFilter + "?data=" + model);
         }

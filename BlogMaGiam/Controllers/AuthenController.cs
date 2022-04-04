@@ -57,7 +57,7 @@ namespace BlogMaGiam.Controllers
                     vm.Message = response.Message;
                     return View(vm);
                 }
-                else
+                else if(response.Data != null)
                 {
                     var stringData = JsonConvert.SerializeObject(response.Data);
                     stringData = Helper.EncryptString(stringData, ConfigurationManager.AppSettings["KEY_PASSWORD"]);
@@ -90,6 +90,11 @@ namespace BlogMaGiam.Controllers
 
                     return RedirectToAction("Index", "Home");
 
+                }
+                else
+                {
+                    vm.Message = "User not found";
+                    return View(vm);
                 }
             }
             return View(vm);

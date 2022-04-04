@@ -28,7 +28,7 @@
                 <input type="text" id="value" class="form-control" />
             </div>
             <div class="div-filter col-md-2">
-                <select class="form-control" id="type" onchange="_clickMerchantJS.changeCalendar(this)">
+                <select class="form-control select2" id="type" onchange="_clickMerchantJS.changeCalendar(this)">
                     @if (Model.TypeCalendars != null && Model.TypeCalendars.Count > 0)
                     {
                         foreach (var item in Model.TypeCalendars)

@@ -21,7 +21,8 @@ namespace Common
 
         public static string ADMIN_BLOGMAGIAM = "BlogMaGiam";
         public static string KEY_ADMIN_BLOGMAGIAM = "key_admin_blogmagiam.com";
-
+        public static string COUPON_ACCESS_TRADE = "COUPON_ACCESSTRADE";
+        public static string COUPON_BLOGMAGIAM = "COUPON_BLOGMAGIAM";
     }
 
 

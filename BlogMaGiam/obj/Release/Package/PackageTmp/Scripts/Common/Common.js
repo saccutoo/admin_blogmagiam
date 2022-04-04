@@ -32,11 +32,18 @@ var HIA = {};
            
         }
 
-
+        function renderMessageError(data) {
+            if (data && data.length>0) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#" + data[i].Key).text(data[i].Value);
+                }
+            }
+        }
 
         return {
             ajaxWrapper: ajaxWrapper,
-            toast: toast
+            toast: toast,
+            renderMessageError: renderMessageError
         }
     }
   

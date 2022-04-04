@@ -57,7 +57,7 @@ var newJS = {};
         }
 
         function change() {
-            $(".message-danger").text("");
+            $(".message-danger-error").text("");
             var check = true;
             if ($("#code").val() == null || $("#code").val() == '') {
                 $("#code-message-danger").text("Do not leave blank code");

@@ -58,14 +58,18 @@
     <Compile Include="Helpers\Response.cs" />
     <Compile Include="Helpers\ResponseAccessTrade.cs" />
     <Compile Include="Models\BasicModel.cs" />
+    <Compile Include="Models\CategoriesModel.cs" />
+    <Compile Include="Models\CouponModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\ClickMerchantModel.cs" />
+    <Compile Include="Models\MerchantListModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TypePromotionModel .cs" />
     <Compile Include="Models\TypeNewModel.cs" />
     <Compile Include="Models\NewModel.cs" />
+    <Compile Include="Models\ValidateModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
