@@ -1,0 +1,143 @@
+﻿@model BlogMaGiam.ViewModel.ChangeCouponViewModel
+@using Common;
+@using System.Configuration;
+@{
+    Layout = null;
+}
+
+<style>
+    .card-body {
+        height: 600px;
+        overflow: auto
+    }
+</style>
+<div class="modal-header">
+
+    @if (Model.Data.id == "0" || string.IsNullOrEmpty(Model.Data.id))
+    {
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new </h5>
+    }
+    else
+    {
+        <h5 class="modal-title" id="exampleModalLongTitle">Update new </h5>
+    }
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="col-md-12">
+
+        <div class="card card-primary card-outline">
+
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form id="form-change">
+                    <input class="form-control" placeholder="id" id="id" name="model.id" value="@Model.Data.id" hidden>
+
+                    <div class="form-group">
+                        <label>Link <span class="message-danger">(*)</span></label>
+                        <input class="form-control" placeholder="aff_link" id="aff_link" name="model.aff_link" value="@Model.Data.aff_link">
+                        <span class="message-danger-error" id="aff_link-message-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Image <span class="message-danger">(*)</span></label>
+                        <input class="form-control" placeholder="image" id="image" name="model.image" value="@Model.Data.image">
+                        <span class="message-danger-error" id="image-message-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name <span class="message-danger">(*)</span></label>
+                        <input class="form-control" placeholder="name" id="name" name="model.name" value="@Model.Data.name">
+                        <span class="message-danger-error" id="name-message-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Merchant<span class="message-danger">(*)</span></label>
+                        <select class="form-control select2" id="merchant" name="model.merchant" style="width: 100%;">
+                            <option value="">
+                                ---Selected merchant
+                            </option>
+                            @if (Model.Merchants != null && Model.Merchants.Count > 0)
+                            {
+                                foreach (var item in Model.Merchants)
+                                {
+                                    string selected = string.Empty;
+                                    if (item.login_name == Model.Data.merchant)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    <option value="@item.login_name" @selected>
+                                        @item.display_name
+                                    </option>
+                                }
+                            }
+                        </select>
+                        <span class="message-danger-error" id="merchant-message-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Coupon code <span class="message-danger">(*)</span></label>
+                        <input class="form-control" placeholder="coupon_code" id="coupon_code" name="model.coupon_code" value="@Model.Data.coupon_code">
+                        <span class="message-danger-error" id="coupon_code-message-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content <span class="message-danger">(*)</span></label>
+                        <textarea row="3" class="form-control" id="content" name="model.content">@Model.Data.content</textarea>
+                        <span class="message-danger-error" id="content-message-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Remain <span class="message-danger">(*)</span></label>
+                        <input type="number" class="form-control" placeholder="remain" id="remain" name="model.remain" value="@Model.Data.remain">
+                        <span class="message-danger-error" id="remain-message-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Start date <span class="message-danger">(*)</span></label>
+                        <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                            <div class="input-group-append " data-target="#reservationdatetime" data-toggle="datetimepicker" style="width:100%">
+                                <input class="form-control" placeholder="start_date" id="start_date_string" name="model.start_date_string" value="@Model.Data.start_date.ToString(ConfigurationManager.AppSettings["FORMAT_DATETIME_CONVERT"])" style="border-radius: 5px 0px 0px 5px">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        <span class="message-danger-error" id="start_date_string-message-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>End date <span class="message-danger">(*)</span></label>
+                        <div class="input-group date" id="reservationdatetimeend" data-target-input="nearest">
+                            <div class="input-group-append " data-target="#reservationdatetimeend" data-toggle="datetimepicker" style="width:100%">
+                                <input class="form-control" placeholder="end_date_string" id="end_date_string" name="model.end_date_string" value="@Model.Data.end_date.ToString(ConfigurationManager.AppSettings["FORMAT_DATETIME_CONVERT"])" style="border-radius: 5px 0px 0px 5px">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        <span class="message-danger-error" id="end_date_string-message-danger"></span>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" onclick="_couponJs.change()">Save changes</button>
+</div>
+
+<script>
+    $(function () {
+        $('.select2').select2();
+        //Date and time picker
+        $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true, format:"DD/MM/YYYY HH:mm:ss" });
+        $('#reservationdatetimeend').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true, format: "DD/MM/YYYY HH:mm:ss" });
+    })
+</script>

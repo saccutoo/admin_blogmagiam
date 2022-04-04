@@ -1,0 +1,108 @@
+﻿@model BlogMaGiam.ViewModel.CouponViewModel
+@using Common;
+@{
+    Layout = null;
+}
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Link</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Merchant</th>
+            <th>Coupon code</th>
+            <th>Content</th>
+            <th>Remain</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Datas != null && Model.Datas.Count > 0)
+        {
+            foreach (var item in Model.Datas)
+            {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(item.aff_link) && item.aff_link.Length > 20)
+                {
+                    <span class="function" onclick="_couponJs.openLink('@item.aff_link')" title="@item.aff_link" data-bs-toggle="tooltip" data-bs-placement="top">@item.aff_link.Substring(0, 20) ...</span>
+                }
+                else
+                {
+                    <span class="function" onclick="_couponJs.openLink('@item.aff_link')">@item.link</span>
+                }
+            </td>
+            <td>
+                <img src="@item.image" width="50" height="50" />
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.name) && item.name.Length > 50)
+                {
+                    <span title="@item.name" data-bs-toggle="tooltip" data-bs-placement="top">@item.name.Substring(0, 50) ...</span>
+                }
+                else
+                {
+                    <span>@item.name</span>
+                }
+            </td>
+            <td>
+                <span>@item.merchant</span>
+            </td>
+            <td>
+                <span>@item.coupon_code</span>
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.content) && item.content.Length > 50)
+                {
+                    <span  title="@item.content" data-bs-toggle="tooltip" data-bs-placement="top">@item.content.Substring(0, 50) ...</span>
+                }
+                else
+                {
+                    <span>@item.content</span>
+                }
+            </td>
+            <td>
+                <span>@item.remain</span>
+            </td>
+            <td>
+                <span>@item.start_date.ToString("dd/MM/yyyy HH:mm:ss")</span>
+            </td>
+            <td>
+                <span>@item.end_date.ToString("dd/MM/yyyy HH:mm:ss")</span>
+            </td>
+            <td>
+                @if (item.status == Constant.Success)
+                {
+                    <span class="badge bg-success">@item.status_name</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">@item.status_name</span>
+                }
+            </td>
+            <td style="width:180px">
+                <button class="btn btn-primary" onclick="_couponJs.edit('@item.id')" title="edit" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fas fa-edit"></i></button>
+                @if (item.status == 1)
+                {
+                    <button class="btn btn-danger" onclick="_couponJs.updateStatus('@item.id',2)" title="delete" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fas fa-trash"></i></button>
+                }
+                else
+                {
+
+                    <button class="btn btn-info" onclick="_couponJs.updateStatus('@item.id',1)" title="undo status" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fas fa-undo"></i></button>
+                }
+                <button class="btn btn-primary" onclick="_couponJs.clone('@item.id')" title="clone" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fas fa-copy"></i></button>
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@Html.Partial("~/Views/Table/_Pagination.cshtml", Model.Table)
+

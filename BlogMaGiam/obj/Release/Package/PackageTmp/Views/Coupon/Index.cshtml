@@ -1,0 +1,114 @@
+﻿@model BlogMaGiam.ViewModel.CouponViewModel
+@using Common
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">New</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @*<li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard v1</li>*@
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-header ">
+            <div class="div-filter col-md-2">
+                <input type="text" id="value" class="form-control" />
+            </div>
+            <div class="div-filter col-md-2">
+                <select class="form-control select2" id="status" name="status">
+                    <option value="" selected>
+                        ---Selected status
+                    </option>
+                    @if (Model.Status != null && Model.Status.Count > 0)
+                    {
+                        foreach (var item in Model.Status)
+                        {
+                            <option value="@item.id">
+                                @item.name
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="div-filter col-md-2">
+                <select class="form-control select2" id="merchant-filter" name="merchant">
+                    <option value="" selected>
+                        ---Selected merchant
+                    </option>
+                    @if (Model.Merchants != null && Model.Merchants.Count > 0)
+                    {
+                        foreach (var item in Model.Merchants)
+                        {
+                            <option value="@item.login_name">
+                                @item.display_name
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="div-filter col-md-2">
+                <select class="form-control select2" id="type" name="type">
+                    <option value="" selected>
+                        ---Selected type coupon
+                    </option>
+                    <option value="@Constant.COUPON_BLOGMAGIAM">
+                        @Constant.COUPON_BLOGMAGIAM
+                    </option>
+                    <option value="@Constant.COUPON_ACCESS_TRADE">
+                        @Constant.COUPON_ACCESS_TRADE
+                    </option>
+                </select>
+            </div>
+            <div class="div-filter">
+                <button class="btn btn-primary" onclick="_couponJs.viewList(1)"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="div-button">
+                <button class="btn btn-primary" onclick="_couponJs.add()">Add new</button>
+            </div>
+            <div class="div-button">
+                <button class="btn btn-primary" onclick="_couponJs.order()">Order</button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table table-responsive table-common" id="table-common">
+                @Html.Partial("~/Views/Coupon/_ListView.cshtml", Model)
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+
+@section scripts
+{
+    <script src="~/Scripts/Coupon/Coupon.js"></script>
+    <script>
+        var params = {
+            urlViewList: '@Url.Action("ViewList", "Coupon")',
+            urlAdd: '@Url.Action("Add", "Coupon")',
+            urlChange: '@Url.Action("Change", "Coupon")',
+            urlEdit: '@Url.Action("Edit", "Coupon")',
+            urlUpdateStatus: '@Url.Action("UpdateStatus", "Coupon")',
+            urlOrder: '@Url.Action("Order", "Coupon")',
+            urlUpdateOrder: '@Url.Action("UpdateOrder", "Coupon")',
+            urlClone: '@Url.Action("Clone", "Coupon")',
+        }
+        var _couponJs = new couponJs.CouponJs();
+        _couponJs.initialize();
+    </script>
+}
